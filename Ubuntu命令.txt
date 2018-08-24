@@ -1,0 +1,98 @@
+Ubuntu命令
+	
+	
+----安装jdk8 或者直接根据提示安装openjdk
+	
+	首先添加ppa 				sudo add-apt-repository ppa:webupd8team/java
+	然后更新系统,刷新软件源 	sudo apt-get update
+	最后开始安装 				sudo apt-get install oracle-java8-installer
+	查看jdk版本					java -version
+	
+	怎么找到自己的java安装路径	java -verbose	命令行的最后，显示的就是jdk安装的路径
+	
+	
+	
+	
+----安装Jenkins
+	简单来说需要下面四步：
+
+	wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+	sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+	sudo apt-get update
+	sudo apt-get install jenkins
+	
+	创建一个名为Jenkins的Linux用户
+	sudo cat /etc/shadow //不知道干啥用	jenkins:x:124:130:Jenkins,,,:/var/lib/jenkins:/bin/bash
+	初次安装 jenkins密码 01f7e26c89cf4403a3e1e57e9c502378
+	用户名：jenkins	密码：jenkins
+	
+	
+	
+	
+----查看git路径
+	which git
+	
+	
+----mysql
+
+	安装
+		1. sudo apt-get install mysql-server
+
+		2. apt-get isntall mysql-client
+
+		3.  sudo apt-get install libmysqlclient-dev
+
+
+	改密码 v: 5.7
+		修改不了密码，可以用以下来修改
+		use mysql;
+		update mysql.user set authentication_string=PASSWORD('root'), plugin='mysql_native_password' where user='root';
+		
+		update user set host = '%' where user = 'root';
+		
+		flush privileges;
+		
+		vim /etc/mysql/mysql.conf.d/mysqld.cnf	修改	（注释掉）bind-address            = 127.0.0.1
+	
+	
+----linux运行jar包命令
+	
+	启动
+		1. java -jar shareniu.jar
+		   当前ssh窗口被锁定，可按CTRL + C打断程序运行，或直接关闭窗口，程序退出
+		
+		2. java -jar shareniu.jar &
+		   当前ssh窗口不被锁定，但是当窗口关闭时，程序中止运行。&代表在后台运行。
+		   
+		3. nohup java -jar shareniu.jar &
+		   nohup 意思是不挂断运行命令,当账户退出或终端关闭时,程序仍然运行。当用 nohup 命令执行作业时，缺省情况下该作业的所有输出被重定向到nohup.out的文件中，除非另外指定了输出文件。
+		   
+		4. nohup java -jar shareniu.jar >temp.txt &
+		   temp.txt是将command的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。可通过jobs命令查看后台运行任务
+	关闭
+		echo $! > java.pid	把java运行的端口查出来
+		执行	kill -9 端口号
+		
+	java.net.BindException: 地址已在使用
+		
+		执行netstat -alnp | grep 出错的端口         可以获取到pid
+		kill - 9  pid
+	
+	查看java运行的进程
+	
+		ps -ef|grep java
+		
+----tail 常用命令
+
+	1、tail -f filename
+	说明：监视filename文件的尾部内容（默认10行，相当于增加参数 -n 10），刷新显示在屏幕上。退出，按下CTRL+C。
+
+	2、tail -n 20 filename
+	说明：显示filename最后20行。
+
+	3、tail -r -n 10 filename
+	说明：逆序显示filename最后10行
+	
+	
+	
+	

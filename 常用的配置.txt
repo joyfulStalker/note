@@ -1,0 +1,76 @@
+常用
+	
+	手机号脱敏
+	StringBuilder stb = new StringBuilder(account.getName());
+	saicActivityDetailDto.setName(stb.replace(3, 7, "****").toString());
+	
+	
+	空格 &ensp; 
+	它叫“半角空格”，此空格有个相当稳健的特性，就是其占据的宽度正好是1/2个中文宽度，而且基本上不受字体影响。
+
+	java前台与后台之间时间格式转换
+		@ApiModelProperty(value = "活动发布时间")
+		@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+		@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+		private Date publishTime;
+	
+	mybatis中常用的配置，if,choose等标签的使用  小于号 <   &lt;   大于号 >  &gt;的使用
+	<select id="selectBackAcivityList" resultType="com.saicmotor.carapp.service.entity.dto.activity.SaicActivityBackListResultDto">
+		SELECT
+			ttsa.id activityId,
+			ttsa.activity_title activityTitle,
+			ua.NAME publisher,
+			ttsa.publish_time publishTime,
+			ttsa.activity_start_time activityStartTime,
+			ttsa.activity_end_time activityEndTime,
+			ttsa.pageviews pageviews,
+			ttsa.sign_num signNum,
+			ttsa.publish_status publishStatus,
+			ttsa.activity_type activityType
+		FROM
+			tt_saic_activity ttsa
+		LEFT JOIN user_account ua ON ttsa.publisher_id = ua.saic_user_id
+		WHERE 1 = 1
+		<if test = "saicActivityListQueryDto.activityTitle != null and saicActivityListQueryDto.activityTitle.trim() != ''">
+			AND ttsa.activity_title LIKE #{saicActivityListQueryDto.activityTitle}
+		</if>
+		<if test = "saicActivityListQueryDto.publisher != null and saicActivityListQueryDto.publisher != ''">
+			AND ua.name like #{saicActivityListQueryDto.publisher}
+		</if>
+		<if test = "saicActivityListQueryDto.publishTimeBegin != null and saicActivityListQueryDto.publishTimeEnd != null">
+			AND ttsa.publish_time BETWEEN #{saicActivityListQueryDto.publishTimeBegin}
+			AND #{saicActivityListQueryDto.publishTimeEnd}
+		</if>
+		<choose>
+			<when test = "saicActivityListQueryDto.publishStatus !=null and saicActivityListQueryDto.publishStatus &gt;= 0 and saicActivityListQueryDto.publishStatus &lt; 3">
+				AND ttsa.publish_status = #{saicActivityListQueryDto.publishStatus}
+			</when>
+			<otherwise>
+            </otherwise>  
+		</choose>
+		<choose>  
+            <when test="saicActivityListQueryDto.activityStatus != null and saicActivityListQueryDto.activityStatus eq 1">  
+                and SYSDATE() &lt; ttsa.activity_start_time
+            </when>  
+            <when test="saicActivityListQueryDto.activityStatus != null and saicActivityListQueryDto.activityStatus eq 2">  
+                and SYSDATE() BETWEEN ttsa.activity_start_time and date_add(ttsa.activity_end_time, interval 23 hour) 
+            </when>  
+            <when test="saicActivityListQueryDto.activityStatus != null and saicActivityListQueryDto.activityStatus eq 3">  
+                and SYSDATE() &gt; date_add(ttsa.activity_end_time, interval 23 hour)  
+            </when>  
+            <otherwise>
+            </otherwise>  
+        </choose>  
+         ORDER BY ttsa.publish_time desc
+	</select>
+	mybatis中常用的配置，foreach标签的使用
+	<select id="selectUserByPublishType" resultMap="BaseResultMap">
+		select * from user_account where user_type = 3
+		<if test="userPublishTypes != null and userPublishTypes.size() > 0">
+			and user_publish_type in 
+			<foreach item="item" collection="userPublishTypes" index="index" open="("  
+				   separator="," close=")">  
+				   #{item}  
+			   </foreach> 
+		</if>
+    </select>
