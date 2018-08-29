@@ -93,6 +93,26 @@ Ubuntu命令
 	3、tail -r -n 10 filename
 	说明：逆序显示filename最后10行
 	
+
 	
-	
-	
+----bat里有隐藏窗口的命令，后台运行
+	方法一：bat里有隐藏窗口的命令，很简单，只需要在代码头部加一段代码就可以了。
+
+	　　@echo off 　　
+	　　if "%1" == "h" goto begin 
+	　　    mshta vbscript:createobject("wscript.shell").run("%~nx0 h",0)(window.close)&&exit 
+	　　:begin 
+	　　::下面是你自己的代码
+	方法二
+	　　在你批处理的相同目录下新建一个记事本，里面输入：
+
+	　　DIM objShell set objShell=wscript.createObject("wscript.shell") 
+	　　iReturn=objShell.Run("cmd.exe /C c:\1.bat", 0, TRUE) 　　
+	　　::（其中win.bat为你自己的批处理名字，自己改）
+	　　:: 然后把这个记事本保存为后缀名为.vbe的文件，到时候你只要运行这个vbe文件就达到目的了！
+	　　:: 可以写的简单点： 
+	　　Set ws = CreateObject("Wscript.Shell") 
+	　　ws.run "cmd /c c:\1.bat",0 
+	　　:: 或者 
+	　　CreateObject("WScript.Shell").Run "cmd /c c:\1.bat",0 
+	　　:: （这种写法很多杀软报毒， 需要替换参数0） 
