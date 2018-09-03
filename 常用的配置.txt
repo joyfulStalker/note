@@ -1,5 +1,7 @@
 常用
 	
+	mybatis你想工程命令 mybatis-generator:generate
+	
 	手机号脱敏
 	StringBuilder stb = new StringBuilder(account.getName());
 	saicActivityDetailDto.setName(stb.replace(3, 7, "****").toString());
