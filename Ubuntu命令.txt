@@ -1,5 +1,9 @@
 Ubuntu命令
-	
+
+
+
+
+
 	
 ----安装jdk8 或者直接根据提示安装openjdk
 	
@@ -94,4 +98,57 @@ Ubuntu命令
 	说明：逆序显示filename最后10行
 	
 
+----解压tar.gz文件到指定目录
+	
+	tar zxvf test.tgz -C 指定目录
+
+	
+----The remote system refused the connection   远端工具连接linux服务器时报这个问题
+
+	Linux系统里面没有安装openssh-server。只需一步即可，执行: sudo apt-get install openssh-server 重新连接
+	
+----rabbitmq安装
+		
+	1、安装erlang
+	    由于rabbitMq需要erlang语言的支持，在安装rabbitMq之前需要安装erlang
+		sudo apt-get install erlang-nox
+	2、安装Rabbitmq
+		更新源 sudo apt-get update
+		安装 sudo apt-get install rabbitmq-server
+	----以下是rabbitmq的web界面管理工具
+	3、查看rabbitmq的插件列表: sudo rabbitmq-plugins list
+	   启用RabbitMQ WEB管理界面: rabbitmq-plugins enable rabbitmq_management
+	   访问管理界面： http://192.168.20.151:15672  默认用户名/密码：guest/guest
+	4、服务重启：systemctl restart rabbitmq  
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	

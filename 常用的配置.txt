@@ -11,10 +11,17 @@
 	它叫“半角空格”，此空格有个相当稳健的特性，就是其占据的宽度正好是1/2个中文宽度，而且基本上不受字体影响。
 
 	java前台与后台之间时间格式转换
+		
+		接收参数转换
+		public Response<Void> WBO1(@DateTimeFormat(pattern="yyyy-MM-dd") Date AppointmentDate)
+	
 		@ApiModelProperty(value = "活动发布时间")
 		@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 		@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
 		private Date publishTime;
+		
+		@JsonFormat(pattern = "yyyy年MM月dd日 HH:mm a", locale = "en", timezone = "GMT+8")
+		设置locale可以改变字符集
 	
 	mybatis中常用的配置，if,choose等标签的使用  小于号 <   &lt;   大于号 >  &gt;的使用
 	<select id="selectBackAcivityList" resultType="com.saicmotor.carapp.service.entity.dto.activity.SaicActivityBackListResultDto">
