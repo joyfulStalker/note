@@ -83,3 +83,18 @@
 			   </foreach> 
 		</if>
     </select>
+	
+	
+	UNION排序问题 当使用union联合表的时候原来的排序会被打乱，此时只需要在子表后面添加 limit 即可保持原有排序
+		--- (union和union all的差别是前者会忽略重复数据，后者不会。)
+	SELECT * from 
+	(
+		(SELECT APPOINTMENT_DATE from tt_appointment_aftersale WHERE TO_DAYS(APPOINTMENT_DATE) >= TO_DAYS(NOW()) ORDER BY APPOINTMENT_DATE  LIMIT 0,99999)
+		UNION
+		(SELECT APPOINTMENT_DATE from tt_appointment_aftersale WHERE TO_DAYS(APPOINTMENT_DATE) < TO_DAYS(NOW())  ORDER BY APPOINTMENT_DATE desc LIMIT 0,99999)
+	)  t
+	
+	
+	
+	
+	
