@@ -1,0 +1,71 @@
+----centos7下使用yum安装ifconfig工具
+	yum search ifconfig
+	yum install net-tools.x86_64
+
+----卸除自带openjdk
+	rpm -qa | grep java 查看
+	rpm -e --nodeps 名字
+	
+----gitlab安装
+	1.安装依赖
+		# 安装本地环境插件
+		yum install yum-plugin-downloadonly
+
+		# 缓存源（少，可以不缓存） 不安装
+		yum install --downloadonly --downloaddir=/data curl policycoreutils-python openssh-server
+
+		systemctl enable sshd
+		systemctl start sshd
+		firewall-cmd --permanent --add-service=http
+		systemctl reload firewalld
+
+		# 安装邮箱 (不用可以不安装)
+		yum install postfix
+		systemctl enable postfix
+		systemctl start postfix
+
+		# 添加清华的gitlab源 
+		cat <<EOF > /etc/yum.repos.d/gitlab-ce.repo
+		[gitlab-ce]
+		name=Gitlab CE Repository
+		baseurl=https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/
+		gpgcheck=0
+		enabled=1
+		EOF
+
+		# 刷新缓存 （gitlab源比较大，建议缓存）
+		yum makecache
+
+		# 安装最新版
+		yum install gitlab-ce			此处可以指定版本 比如yum install gitlab-ce-10.2.4
+	2. 修改配置
+		vi /etc/gitlab/gitlab.rb   (核心文件)
+		# 修改该行
+		external_url 'http://10.180.4.94'
+
+		# 关闭smtp，发信系统用的默认的postfix,smtp是默认开启的,两个都启用了,两个都不会工作. 
+		gitlab_rails['smtp_enable'] = false
+
+		# 重启
+		gitlab-ctl reconfigure
+		gitlab-ctl restart
+
+	3.访问
+		浏览器打开：http://10.180.4.94
+
+	4. 汉化
+		# 1. 获取版本号
+		cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
+		11.6.0
+
+		# 2.
+		 
+
+
+		GitLab常用命令
+		gitlab-ctl start    # 启动所有 gitlab 组件；
+		gitlab-ctl stop        # 停止所有 gitlab 组件；
+		gitlab-ctl restart        # 重启所有 gitlab 组件；
+		gitlab-ctl status        # 查看服务状态；
+		gitlab-ctl reconfigure        # 启动服务；
+		gitlab-ctl tail        # 查看日志；
