@@ -1,3 +1,12 @@
+----linux如何查看端口被哪个进程占用？
+	1、lsof -i:端口号
+	2、netstat -tunlp|grep 端口号
+
+都可以查看指定端口被哪个进程占用的情况
+
+----nohup java -jar jenkins.war --httpPort=8081 & 
+	指定端口运行时 --httpPort=  有两个--
+
 ----centos7修改动态IP为静态
 	首先查看VMware中设置的动态ip起止范围，以免设置冲突
 	
@@ -23,7 +32,7 @@
 	rpm -qa | grep java 查看
 	rpm -e --nodeps 名字
 	
-----gitlab安装
+----gitlab安装(重启机器gitlab默认是重启的)（ngnix有个默认监听 8080）
 	1.安装依赖
 		# 安装本地环境插件
 		yum install yum-plugin-downloadonly
@@ -59,6 +68,11 @@
 		vi /etc/gitlab/gitlab.rb   (核心文件)
 		# 修改该行
 		external_url 'http://10.180.4.94'
+		vi /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml.example
+		
+		修改gitlab
+             host：要修改的IP
+             port：要修改的端口
 
 		# 关闭smtp，发信系统用的默认的postfix,smtp是默认开启的,两个都启用了,两个都不会工作. 
 		gitlab_rails['smtp_enable'] = false
