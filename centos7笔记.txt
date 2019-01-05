@@ -86,3 +86,13 @@
 		gitlab-ctl status        # 查看服务状态；
 		gitlab-ctl reconfigure        # 启动服务；
 		gitlab-ctl tail        # 查看日志；
+		
+		
+		
+		
+		"Could not resolve host: mirrorlist.centos.org; Unknown error"的解决方法
+		vi /etc/resolv.conf
+		然后添加
+		nameserver 8.8.8.8 
+		nameserver 8.8.4.4 
+		serchdomain root
