@@ -1,0 +1,14 @@
+#!/bin/bash
+#chkconfig:2345 20 90    
+#description:nexus    
+#processname:nexus    
+export JAVA_HOME=/usr/local/java/jdk1.8.0_191/
+case $1 in    
+        start) su root /usr/local/nexus/nexus-3.14.0-04/bin/nexus start;;    
+        stop) su root /usr/local/nexus/nexus-3.14.0-04/bin/nexus stop;;    
+        status) su root /usr/local/nexus/nexus-3.14.0-04/bin/nexus status;;    
+        restart) su root /usr/local/nexus/nexus-3.14.0-04/bin/nexus restart;;    
+		dump ) su /usr/local/nexus/nexus-3.14.0-04/bin/nexus dump ;; 
+        console ) su root /usr/local/nexus/nexus-3.14.0-04/bin/nexus console ;;  		
+        *) echo "require console | start | stop | restart | status | dump " ;;    
+esac
