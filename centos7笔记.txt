@@ -1,3 +1,7 @@
+----开机启动，把命令加到了/etc/rc.d的rc.local中，启动发现没有该进程
+    进入发现该文件没有执行权，修改权限
+    chmod +x /etc/rc.d/rc.local
+
 ----linux如何查看端口被哪个进程占用？
 	1、lsof -i:端口号
 	2、netstat -tunlp|grep 端口号
@@ -23,7 +27,7 @@
 	保存退出后,重启网络服务:
 	# service network restart
 
-
+ 
 ----centos7下使用yum安装ifconfig工具
 	yum search ifconfig
 	yum install net-tools.x86_64
