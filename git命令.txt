@@ -11,3 +11,13 @@ git remote add origin 你的远程库地址  // 把本地库与远程库关联
 git push -u origin master    // 第一次推送时
 
 git push origin master  // 第一次推送后，直接使用该命令即可推送修改
+
+
+
+
+----github RPC failed; curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054
+	出现此问题有可能是上传大小限制： 
+	执行如下命令
+	git config http.postBuffer 524288000
+	出现如下错误：curl 56 OpenSSL SSL_read:SSL_ERROR_sysCALL
+	执行：  git config http.sslVerify "false"
