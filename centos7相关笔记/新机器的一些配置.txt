@@ -37,9 +37,12 @@
 	nameserver 8.8.4.4 
 	serchdomain root
 
-----centos7下使用yum安装ifconfig工具
+----centos7下使用yum安装ifconfig、wget等工具(yum search 要安装的工具   来搜索)
 	yum search ifconfig
 	yum install net-tools.x86_64
+	
+	yum search wget
+	yum install wget.x86_64
 	
 	
 ----CentOS7使用firewalld打开关闭防火墙与端口	
