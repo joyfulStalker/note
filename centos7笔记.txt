@@ -11,26 +11,6 @@
 ----nohup java -jar jenkins.war --httpPort=8081 & 
 	指定端口运行时 --httpPort=  有两个--
 
-----centos7修改动态IP为静态
-	首先查看VMware中设置的动态ip起止范围，以免设置冲突
-	
-	vi /etc/sysconfig/network-scripts/ifcfg-（一般第一个）
-
-	这里说一下需要修改的位置:
-	#修改
-	BOOTPROTO=static #这里讲dhcp换成ststic
-	ONBOOT=yes #将no换成yes（如果no  使用yum安装时会报 Error: cannot find a valid baseurl or repo:base）
-	#新增
-	IPADDR=192.168.100.200 #静态IP
-	GATEWAY=192.168.100.2 #默认网关
-	NETMASK=255.255.255.0 #子网掩码
-	保存退出后,重启网络服务:
-	# service network restart
-
- 
-----centos7下使用yum安装ifconfig工具
-	yum search ifconfig
-	yum install net-tools.x86_64
 
 ----卸除自带openjdk
 	rpm -qa | grep java 查看
@@ -96,7 +76,6 @@
 		# 2.
 		 
 
-
 		GitLab常用命令
 		gitlab-ctl start    # 启动所有 gitlab 组件；
 		gitlab-ctl stop        # 停止所有 gitlab 组件；
@@ -105,13 +84,4 @@
 		gitlab-ctl reconfigure        # 启动服务；
 		gitlab-ctl tail        # 查看日志；
 		
-		
-		
-----Cannot find a valid baseurl for repo: base/7/x86_64
-----"Could not resolve host: mirrorlist.centos.org; Unknown error"的解决方法
-	这是因为域名解析不了，修改配置
-	vi /etc/resolv.conf
-	然后添加
-nameserver 8.8.8.8 
-nameserver 8.8.4.4 
-serchdomain root
+
