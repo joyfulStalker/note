@@ -43,6 +43,9 @@
 	
 	2、卸载：通过命令sc delete MySQL/mysqld -remove卸载 MySQL 服务
 
+参考 http://www.cnblogs.com/laumians-notes/p/9069498.html
+	 https://blog.csdn.net/ermaner666/article/details/79096939/
+
 
 
 
