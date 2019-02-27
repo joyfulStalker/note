@@ -7,13 +7,13 @@
 #nohup $prefix/start_jenkins.sh >> $prefix/jenkins.log 2>&1 &
 
 
-JENKINS_ROOT=/opt/jenkins
+JENKINS_ROOT=/usr/local/jenkins
 JENKINSFILENAME=jenkins.war
 
 #停止方法
 stop(){
-    echo "Stoping $JENKINSFILENAME "
-	ps -ef|grep $JENKINSFILENAME |awk '{print $2}'|while read pid
+    echo "Stoping ${JENKINSFILENAME}"
+	ps -ef|grep ${JENKINSFILENAME} |awk '{print $2}'|while read pid
 	do
 	   kill -9 $pid
 	   echo " $pid kill"
@@ -22,8 +22,8 @@ stop(){
 
 case "$1" in
 start)
-    echo "Starting $JENKINSFILENAME "
-	nohup $JENKINS_ROOT/start_jenkins.sh >> $JENKINS_ROOT/jenkins.log 2>&1 &
+    echo "Starting ${JENKINSFILENAME}"
+	nohup ${JENKINS_ROOT}/startjenkins.sh >> ${JENKINS_ROOT}/jenkins.log 2>&1 &
   ;;
 stop)
   stop

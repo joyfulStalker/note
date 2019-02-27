@@ -15,7 +15,7 @@
 
 	这里说一下需要修改的位置:
 	#修改
-	BOOTPROTO=static #这里讲dhcp换成ststic
+	BOOTPROTO=static #这里讲dhcp换成static
 	ONBOOT=yes #将no换成yes（如果no  使用yum安装时会报 Error: cannot find a valid baseurl or repo:base）
 	#新增
 	IPADDR=192.168.100.200 #静态IP

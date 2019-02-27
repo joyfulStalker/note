@@ -2,7 +2,7 @@
 	
 centos7使用
     关联文件，/etc/init.d/
-	ln -s /opt/jenkins/jenkins.sh /etc/init.d/jenkins
+	ln -s /opt/jenkins/jenkins.sh /etc/init.d/jenkins         注：   /opt/jenkins/jenkins.sh  路径要写全不然是无效的
 	chkconfig --add jenkins
 	chkconfig --level 345 jenkins on
 Ubuntu使用	
