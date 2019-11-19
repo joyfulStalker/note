@@ -52,14 +52,17 @@
 		vi /etc/gitlab/gitlab.rb   (核心文件)
 		# 修改该行
 		external_url 'http://10.180.4.94'
+		# 关闭smtp，发信系统用的默认的postfix,smtp是默认开启的,两个都启用了,两个都不会工作. 
+		gitlab_rails['smtp_enable'] = false
+		
+		
 		vi /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml.example
 		
 		修改gitlab
-             host：要修改的IP
-             port：要修改的端口
+		     host：要修改的IP
+		     port：要修改的端口
 
-		# 关闭smtp，发信系统用的默认的postfix,smtp是默认开启的,两个都启用了,两个都不会工作. 
-		gitlab_rails['smtp_enable'] = false
+		
 
 		# 重启
 		gitlab-ctl reconfigure
