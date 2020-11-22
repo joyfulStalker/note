@@ -1,3 +1,0 @@
-﻿https://www.cnblogs.com/zheting/p/6707035.html	Spring Boot干货系列：（三）启动原理解析
-https://www.cnblogs.com/kissdodog/p/5422195.html	mysql读写分离
-https://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html   分布式事务

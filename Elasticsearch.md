@@ -11,65 +11,65 @@ CentOS7.X 安装 Elasticsearch_6.5.1 （配置集群）
 	tar -zxvf elasticsearch-6.5.1.tar.gz
 	1
 	（2）在/opt下新建文件夹 dev-env，并将解压后的 elasticsearch-6.5.1 移动到 /opt/dev-env/ 下面。
-
+	
 	mv elasticsearch-6.5.1/ /opt/dev-env/
 	1
 	elasticsearch不允许root用户启动运行。所以，需要为普通用户赋权限。
-
+	
 	注意：以下创建用户和赋权限的操作都需要先切换为root用户才行。
-
+	
 	（3）创建一个普通用户es-admin 。
-
+	
 	useradd elas
-
+	
 	（4）为用户es-admin创建密码，连续输入两次密码。
-
+	
 	passwd elas
-
+	
 	（5）创建一个用户组es。
-
+	
 	groupadd es
-
+	
 	（6）分配用户es-admin到用户组es中。
-
+	
 	usermod -G es es-admin
 	1
 	（7）进入elasticsearch-6.5.1根目录。
-
+	
 	cd /opt/dev-env/elasticsearch-6.5.1
 	1
 	（8）给用户es-admin赋予权限，-R表示逐级（N层目录） ， *表示 任何文件。
-
+	
 	chown -R elas.es *
-
+	
 	（9）切换到es-admin用户。
-
+	
 	su elas
-
+	
 	（10）启动 elasticsearch-6.5.1 的 bin目录下的elasticsearch。如果想要在后台运行，加一个参数-d。
-
+	
 	cd /opt/dev-env/elasticsearch-6.5.1
 	./bin/elasticsearch
-
+	
 	后台运行：
-
+	
 	./bin/elasticsearch -d
-
+	
 	（11）关闭后台运行的elasticsearch。
-
+	
 	首先，查看进程号：
-
+	
 	ps -ef|grep elasticsearch
-
+	
 	然后，杀掉进程：
-
+	
 	# 14056 是你查到的进程号
 	kill -9 14056
-
+	
 	基本参数配置
 	# 修改elasticsearch的配置文件
 	vim ./config/elasticsearch.yml
-
+	
 	# cluster.name 指定集群名称
 	cluster.name: cluster
 	# node.name 指定节点名称
@@ -83,11 +83,11 @@ CentOS7.X 安装 Elasticsearch_6.5.1 （配置集群）
 	（1）本地测试
 
 	执行如下命令，注意192.168.137.128是在配置文件里配置的network.name。
-
+	
 	curl -X GET 192.168.137.128:9200
-
+	
 	得到返回的json数据：
-
+	
 	{
 	"name" : "node-1",
 	"cluster_name" : "es-admin-application",
@@ -108,6 +108,5 @@ CentOS7.X 安装 Elasticsearch_6.5.1 （配置集群）
 
 
 	（2）远程测试
-
+	
 	直接在浏览器中输入http://192.168.137.128:9200，同样返回上面的json数据。
-
