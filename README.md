@@ -1,14 +1,14 @@
-​												笔记整理目录
+												笔记整理目录
 
-[JAVA]: Java.md
-[ELK]: Elasticsearch.md
-[git]: git.md
-[jenkins]: jenkins.md
-[linux]: Linux.md
-[MySql]: MySql.md
-[nexus]: nexus.md
-[Windows]: Windows.md
-[RabbitMq]: RabbitMq.md
+[JAVA]: Java.md	"JAVA"
+[ELK]: Elasticsearch.md	"ELK"
+[git]: git.md	"git"
+[jenkins]: jenkins.md	"jenkins"
+[linux]: Linux.md	"linux"
+[MySql]: MySql.md	"mysql"
+[nexus]: nexus.md	"nexus"
+[Windows]: Windows.md	"windows"
+[RabbitMq]: RabbitMq.md	"rabbitmq"
 
 
 
