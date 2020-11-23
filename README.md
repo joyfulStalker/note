@@ -4,7 +4,7 @@
 * [git](./git.md)
 * [jenkins](./jenkins.md)
 * [linux](./Linux.md)
-* [MySql](./MySql.md)
+* [MySql](./MySQL.md)
 * [nexus](./nexus.md)
 * [Windows](./Windows.md)
 * [RabbitMq](./RabbitMq.md)
