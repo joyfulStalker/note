@@ -2,7 +2,7 @@ Rabbitmq笔记
 
 [TOC]
 
-
+[返回目录](./README.md)
 
 ### 一、 rabbitmq安装（Ubuntu）
 
