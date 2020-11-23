@@ -1,4 +1,5 @@
 # 笔记目录
+* [主页](.)
 * [JAVA笔记](./Java.md)
 * [ELK笔记](./Elasticsearch.md)
 * [git](./git.md)
