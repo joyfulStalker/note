@@ -64,8 +64,8 @@ $: systemctl --failed					##查看启动失败的服务列表
 #添加：（--permanent永久生效，没有此参数重启后失效）
 $: firewall-cmd --zone=public --add-port=80/tcp --permanent    
 $: firewall-cmd --reload									#重新载入
-$: firewall-cmd --zone= public --query-port=80/tcp			   #查看
-$: firewall-cmd --zone= public --remove-port=80/tcp --permanent	#删除
+$: firewall-cmd --zone=public --query-port=80/tcp			   #查看
+$: firewall-cmd --zone=public --remove-port=80/tcp --permanent	#删除
 ##3、配置firewalld-cmd
 $: firewall-cmd --version					#查看版本
 $: firewall-cmd --help						#查看帮助
