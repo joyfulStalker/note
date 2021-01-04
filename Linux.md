@@ -45,38 +45,38 @@ $: yum install wget.x86_64
 #④、防火墙命令
 ##1、firewalld的基本使用(systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。)
 $: systemctl start firewalld	##启动
-$: systemctl stop firewalld		##关闭
+$: systemctl stop firewalld	##关闭
 $: systemctl status firewalld	##查看状态
 $: systemctl disable firewalld	##开机禁用
 $: systemctl enable firewalld	##开机启用
 ##或者
 $: systemctl start firewalld.service	  ##启动一个服务
-$: systemctl stop firewalld.service		  ##关闭一个服务
+$: systemctl stop firewalld.service	  ##关闭一个服务
 $: systemctl restart firewalld.service	  ##重启一个服务
 $: systemctl status firewalld.service	  ##显示一个服务的状态
 $: systemctl enable firewalld.service	  ##在开机时启用一个服务
 $: systemctl disable firewalld.service	  ##在开机时禁用一个服务
 $: systemctl is-enabled firewalld.service ##查看服务是否开机启动
 $: systemctl list-unit-files|grep enabled ##查看已启动的服务列表
-$: systemctl --failed					##查看启动失败的服务列表
+$: systemctl --failed			  ##查看启动失败的服务列表
 
 ##2、对端口操作命令
 #添加：（--permanent永久生效，没有此参数重启后失效）
 $: firewall-cmd --zone=public --add-port=80/tcp --permanent    
-$: firewall-cmd --reload									#重新载入
-$: firewall-cmd --zone=public --query-port=80/tcp			   #查看
+$: firewall-cmd --reload					#重新载入
+$: firewall-cmd --zone=public --query-port=80/tcp		#查看
 $: firewall-cmd --zone=public --remove-port=80/tcp --permanent	#删除
 ##3、配置firewalld-cmd
 $: firewall-cmd --version					#查看版本
 $: firewall-cmd --help						#查看帮助
 $: firewall-cmd --state						#显示状态
-$: firewall-cmd --zone=public --list-ports	  #查看所有打开的端口 
+$: firewall-cmd --zone=public --list-ports	  		#查看所有打开的端口 
 $: firewall-cmd --reload					#更新防火墙规则
-$: firewall-cmd --get-active-zones			 #查看区域信息
-$: firewall-cmd --get-zone-of-interface=eth0  #查看指定接口所属区域
+$: firewall-cmd --get-active-zones			 	#查看区域信息
+$: firewall-cmd --get-zone-of-interface=eth0  			#查看指定接口所属区域
 $: firewall-cmd --panic-on					#拒绝所有包
 $: firewall-cmd --panic-off					#取消拒绝状态
-$: firewall-cmd --query-panic				 #查看是否拒绝
+$: firewall-cmd --query-panic				 	#查看是否拒绝
 
 
 ##⑤、telnet安装与使用
@@ -108,9 +108,6 @@ $: yum list installed | grep ruby
 4、如果是以源码包自己编译安装的，例如.tar.gz或者tar.bz2形式的，这个只能看可执行文件是否存在了，
 上面两种方法都看不到这种源码形式安装的包。如果是以root用户安装的，可执行程序通常都在/sbin:/usr/bin目录下。
 说明：其中rpm yum 是Redhat系linux的软件包管理命令，dpkg是debian系列的软件包管理命令
-
-
-
 ```
 
 
@@ -163,13 +160,6 @@ $: flush privileges;
 #修改	（注释掉）bind-address = 127.0.0.1
 $: vim /etc/mysql/mysql.conf.d/mysqld.cnf	
 ```
-
-
-
-
-
-
-
 
 
 # 三：通用
@@ -251,9 +241,6 @@ $: netstat -tunlp|grep 8080
 ```
 
 
-
-
-
 # 四：常见错误
 
 1、The remote system refused the connection   
@@ -265,11 +252,6 @@ $: sudo apt-get install openssh-server
 #重新连接
 ```
 
-
-
-​	
-​	
-​	
 
 # 五：自己实现的脚本
 
@@ -293,26 +275,3 @@ echo "CLASSPATH=\$JAVA_HOME/lib/" >> /etc/profile
 echo "PATH=\$PATH:\$JAVA_HOME/bin" >> /etc/profile
 echo "export PATH JAVA_HOME CLASSPATH" >> /etc/profile
 ```
-
-
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
-​	
